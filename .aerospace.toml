@@ -144,6 +144,9 @@ run = 'layout floating'
     alt-5 = 'workspace 5'
     alt-6 = 'workspace 6'
     alt-7 = 'workspace 7'
+    alt-s = 'workspace s'
+    alt-o = 'workspace o'
+
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -153,6 +156,8 @@ run = 'layout floating'
     alt-shift-5 = 'move-node-to-workspace 5'
     alt-shift-6 = 'move-node-to-workspace 6'
     alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-s = 'move-node-to-workspace s'
+    alt-shift-o = 'move-node-to-workspace o'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -161,9 +166,6 @@ run = 'layout floating'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
-
-    alt-b = 'exec-and-forget open -a /Applications/Zen.app'
-    alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 
     alt-backspace = 'mode hash'
 
