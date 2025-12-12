@@ -2,6 +2,8 @@
 theme = catppuccin mocha
 
 palette = 0=#1f1f1f
+palette = 2=#94fbbf
+palette = 10=#94fbbf
 background = #1f1f1f
 foreground = #FAFAFA
 cursor-color = #FAFAFA
