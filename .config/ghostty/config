@@ -1,20 +1,26 @@
-# theme = catppuccin mocha
-# theme = embark
-theme = guezwhoz
+# theme + colour override
+theme = catppuccin mocha
 
-font-size = 13
+palette = 0=#1f1f1f
+background = #1f1f1f
+foreground = #FAFAFA
+cursor-color = #FAFAFA
+cursor-text = #FAFAFA       
+selection-background = #3a3a3a
 
+# font
+font-size = 14
+
+# window sizing
 window-padding-x = 15
 window-padding-y = 15
 
-# hidden-window-decoration = none
-
+# hide title bar
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-proxy-icon = hidden
 title = " "
 
 # options for chaning alt
-# macos-option-as-alt = left
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 
