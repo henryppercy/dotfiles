@@ -1,14 +1,26 @@
 # theme + colour override
-theme = catppuccin mocha
+palette = 0=#12161a
+palette = 1=#F97791
+palette = 2=#38FFA5
+palette = 3=#FFA064
+palette = 4=#5CCEFF
+palette = 5=#B2A3FF
+palette = 6=#0AE7FF
+palette = 7=#a9b1d6
+palette = 8=#414868
+palette = 9=#F73F64
+palette = 10=#41FFDC
+palette = 11=#FFE77A
+palette = 12=#89BEFF
+palette = 13=#FFB3EC
+palette = 14=#00FBFF
+palette = 15=#E7EAEE
 
-palette = 0=#1f1f1f
-palette = 2=#94fbbf
-palette = 10=#94fbbf
-background = #1f1f1f
-foreground = #FAFAFA
-cursor-color = #FAFAFA
-cursor-text = #FAFAFA       
-selection-background = #3a3a3a
+background = #171B20
+foreground = #E7EAEE
+cursor-color = #E7EAEE
+selection-background = #2f3546
+selection-foreground = #E7EAEE
 
 # font
 font-size = 14
@@ -18,11 +30,12 @@ window-padding-x = 15
 window-padding-y = 15
 
 # hide title bar
-macos-titlebar-proxy-icon = hidden
+window-decoration = false
 macos-titlebar-proxy-icon = hidden
 title = " "
 
 # options for chaning alt
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+macos-option-as-alt = true
 
