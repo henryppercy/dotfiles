@@ -13,7 +13,9 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias art="php artisan"
 alias vapor="/Users/henrypercy/.composer/vendor/bin/vapor"
-alias io="~/code/tmux-session/tmux_io.sh ~/code/tmux-session/work.yaml"
+alias io="~/code/personal/tmux-session/tmux_io.sh ~/code/personal/tmux-session/work.yaml"
+# Search and open session in TMUX
+alias s='sesh connect "$(sesh list --icons | fzf --no-sort --ansi --height 40% --reverse --border-label " sesh " --border --prompt "⚡  ")"'
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/user/.composer/vendor/bin:/opt/homebrew/bin:$PATH"
 export PATH="$PATH:$HOME/bin"
@@ -49,5 +51,13 @@ export HERD_PHP_84_INI_SCAN_DIR="/Users/henrypercy/Library/Application Support/H
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Auto-start tmux with sesh
+if command -v sesh &> /dev/null && [ -z "$TMUX" ]; then
+  sesh connect "$(sesh list --icons | fzf --no-sort --ansi --height 40% --reverse --border-label " sesh " --border --prompt "⚡  ")" || tmux new -s main
+fi
+
 . "$HOME/.local/bin/env"
+
+# zoxide setup
+eval "$(zoxide init zsh)"
 
