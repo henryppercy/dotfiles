@@ -1,31 +1,33 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	build = ":TSUpdate",
+	lazy = false,
 }
 
+function M.init()
+	require("mappings").register({ "<leader>it", "<cmd>TSUpdate<cr>", desc = "Update parsers" })
+	require("mappings").register({ "<leader>iT", "<cmd>TSInstall all<cr>", desc = "Install parsers (all)" })
+end
+
 function M.config()
-	local treesitter = require("nvim-treesitter")
-	
-	treesitter.setup({
-		ensure_installed = {
-			"lua",
-			"vim",
-			"vimdoc",
-			"javascript",
-			"typescript",
-            "go",
-            "php",
-			"html",
-			"css",
-			"json",
-			"markdown",
-			"bash",
-		},
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function(args)
+			local buf = args.buf
+			local filetype = args.match
 
-		auto_install = true, -- Auto-install missing parsers when entering buffer
+			-- Check if a parser exists for the current language
+			local language = vim.treesitter.language.get_lang(filetype) or filetype
+			if not vim.treesitter.language.add(language) then
+				return
+			end
 
-		highlight = { enable = true },
-		indent = { enable = true },
+            -- Highlighting
+			vim.treesitter.start(buf, language)
+
+			-- Indentation
+			vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end,
 	})
 end
 
