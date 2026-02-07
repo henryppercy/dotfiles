@@ -1,4 +1,5 @@
 require("options").setup()
+require("lsp").setup()
 require("mappings").setup()
 require("plugins").setup()
 require("autocommands").setup()
