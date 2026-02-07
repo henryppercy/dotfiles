@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-    vim.lsp.config('*', {
+    vim.lsp.config("*", {
         capabilities = {
             textDocument = {
                 semanticTokens = {
@@ -9,11 +9,11 @@ function M.setup()
                 }
             }
         },
-        root_markers = { '.git' },
+        root_markers = { ".git" },
     })
 
     vim.lsp.enable({
-        'lua_ls', 'ts_ls',
+        "lua_ls", "ts_ls", "gopls",
     })
 
     vim.diagnostic.config({
