@@ -22,7 +22,7 @@ M.opts = {
                 [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
                 [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
                 [[                                                                       ]],
-           }, "\n"),
+            }, "\n"),
         },
     },
     indent = {
@@ -35,7 +35,8 @@ M.opts = {
     picker = {
         enabled = true,
     },
-    
+    lazygit = {},
+
     bigfile = { enabled = false },
     explorer = { enabled = false },
     input = { enabled = false },
@@ -49,11 +50,11 @@ M.opts = {
 
 M.keys = {
     { "<leader>ff", function() require("snacks").picker.files({ hidden = true }) end, desc = "Find Files" },
-    { "<leader>fg", function() require("snacks").picker.grep() end, desc = "Grep" },
-    { "<leader>fb", function() require("snacks").picker.buffers() end, desc = "Buffers" },
-    { "<leader>fh", function() require("snacks").picker.help() end, desc = "Help" },
-    { "<leader>fr", function() require("snacks").picker.recent() end, desc = "Recent Files" },
+    { "<leader>fg", function() require("snacks").picker.grep() end,                   desc = "Grep" },
+    { "<leader>fb", function() require("snacks").picker.buffers() end,                desc = "Buffers" },
+    { "<leader>fh", function() require("snacks").picker.help() end,                   desc = "Help" },
+    { "<leader>fr", function() require("snacks").picker.recent() end,                 desc = "Recent Files" },
+    { "<leader>gg", function() require("snacks").lazygit() end,                       desc = "Lazygit" },
 }
 
 return M
-
