@@ -3,4 +3,4 @@ require("lsp").setup()
 require("mappings").setup()
 require("plugins").setup()
 require("autocommands").setup()
-
+require("winbar").setup()
