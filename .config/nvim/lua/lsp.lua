@@ -9,21 +9,31 @@ function M.setup()
                 }
             }
         },
+        on_init = function(client)
+            local ok, blink = pcall(require, "blink.cmp")
+            if ok then
+                client.capabilities = blink.get_lsp_capabilities(client.capabilities)
+            end
+        end,
         root_markers = { ".git" },
     })
 
     vim.lsp.enable({
-        "lua_ls", "ts_ls", "gopls",
+        "lua_ls",
+        "vtsls",
+        "gopls",
+        "vue_ls",
+        "astro",
+        "emmet_language_server",
     })
 
     vim.diagnostic.config({
         virtual_text = true, -- always show virtual line diagnostic
-        -- virtual_lines = {
-        --     current_line = true, -- only show virtual line diagnostics for the current cursor line
-        -- },
     })
 
-    -- configure autocomplete, don't auto select first option
+    -- native autocomplete
+
+    -- don't auto select first option
     -- vim.opt.completeopt = { "menuone", "noselect", "popup" }
 
     -- enable autocomplete
