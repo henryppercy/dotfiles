@@ -29,7 +29,6 @@ function M.setup()
 	opt.cursorline = true -- highlight the current line
 	opt.number = true -- set numbered lines
 	opt.laststatus = 3 -- display one statusline for all windows
-	opt.winborder = "rounded" -- add rounded border to dignostics
 
     -- make TreeSitter highlight groups have higher priority than LSP semantic tokens
 	vim.highlight.priorities.treesitter = 100
