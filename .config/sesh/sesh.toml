@@ -1,0 +1,63 @@
+# Sessions
+[[session]]
+name = "Website"
+path = "~/code/personal/astrofolio"
+startup_command = "nvim"
+windows = ["dev"]
+
+[[session]]
+name = "Dotfiles"
+path = "~/code/personal/dotfiles"
+startup_command = "nvim"
+
+[[session]]
+name = "Neovim Config"
+path = "~/code/personal/dotfiles/.config/nvim"
+startup_command = "nvim"
+
+[[session]]
+name = "Base API"
+path = "~/code/rework/ecomm-base"
+
+[[session]]
+name = "Chard API"
+path = "~/code/rework/ecomm-chard"
+
+[[session]]
+name = "Chard Auth"
+path = "~/code/rework/ecomm-chard-auth"
+windows = ["dev", "mailhog"]
+
+[[session]]
+name = "Chard FE"
+path = "~/code/rework/ecomm-chard-fe"
+
+[[session]]
+name = "Jenson Samuel"
+path = "~/code/rework/jensonsamuelmenswear"
+windows = ["tdev", "mailhog", "elasticsearch"]
+
+[[session]]
+name = "Touch Point"
+path = "~/code/rework/touchpoint"
+windows = ["mailhog"]
+
+# Windows
+[[window]]
+name = "dev"
+startup_script = "npm run dev"
+
+[[window]]
+name = "tdev"
+startup_script = "npm run theme-dev"
+
+[[window]]
+name = "mailhog"
+path = "~"
+startup_script = "mailhog"
+
+[[window]]
+name = "elasticsearch"
+path = "~"
+startup_script= "./bin/elasticsearch.sh"
+
