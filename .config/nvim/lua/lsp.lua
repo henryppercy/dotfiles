@@ -25,7 +25,9 @@ function M.setup()
         "vue_ls",
         "astro",
         "emmet_language_server",
+        "intelephense",
     })
+
 
     vim.diagnostic.config({
         virtual_text = true, -- always show virtual line diagnostic
