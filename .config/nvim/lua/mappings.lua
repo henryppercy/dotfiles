@@ -21,8 +21,19 @@ function M.setup()
     keymap.set("v", "<", "<gv", { desc = "Indent left" })
     keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
-    -- format
+    -- code
     keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+    keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+    keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
+
+    -- buffer
+    keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
+
+    -- split navigation
+    keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+    keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
+    keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
+    keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 end
 
 return M
