@@ -19,9 +19,6 @@ function M.config()
             sidebars = "dark",
             floats = "dark",
         },
-        plugins = {
-            auto = true,
-        },
         dim_inactive = false,
     })
     teide.load()
