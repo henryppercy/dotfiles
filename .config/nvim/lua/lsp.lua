@@ -18,35 +18,34 @@ function M.setup()
         root_markers = { ".git" },
     })
 
+    vim.lsp.config("intelephense", {
+        settings = {
+            intelephense = {
+                files = {
+                    exclude = {
+                        "**/tests/src/**",
+                        "**/tests/packages/**",
+                    },
+                },
+            },
+        },
+    })
+
     vim.lsp.enable({
         "lua_ls",
-        "vtsls",
-        "gopls",
-        "vue_ls",
-        "astro",
+
+        "vtsls", "vue_ls",
+        "astro", "eslint",
         "emmet_language_server",
+
+        "gopls",
+
         "intelephense",
     })
 
-
     vim.diagnostic.config({
-        virtual_text = true, -- always show virtual line diagnostic
+        virtual_text = true,
     })
-
-    -- native autocomplete
-
-    -- don't auto select first option
-    -- vim.opt.completeopt = { "menuone", "noselect", "popup" }
-
-    -- enable autocomplete
-    -- vim.api.nvim_create_autocmd("LspAttach", {
-    --     callback = function(ev)
-    --         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    --         if client:supports_method("textDocument/completion") then
-    --             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    --         end
-    --     end
-    -- })
 end
 
 return M

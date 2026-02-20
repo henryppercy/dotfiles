@@ -1,6 +1,6 @@
 require("options").setup()
-require("lsp").setup()
 require("mappings").setup()
 require("autocommands").setup()
 require("plugins").setup()
+require("lsp").setup()
 require("winbar").setup()
