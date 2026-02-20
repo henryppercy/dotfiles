@@ -22,7 +22,7 @@ function M.setup()
     keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
     -- code
-    keymap.set("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format" })
+    keymap.set("n", "<leader>cf", function() require("conform").format({ lsp_format = "fallback" }) end, { desc = "Format" })
     keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
     keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
