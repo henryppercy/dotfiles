@@ -11,6 +11,7 @@ local basic_mappings = {
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
         { "<leader>i", group = "Install" },
+        { "<leader>z", group = "Zen" },
     }
 }
 

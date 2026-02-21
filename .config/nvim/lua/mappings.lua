@@ -22,7 +22,8 @@ function M.setup()
     keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
     -- code
-    keymap.set("n", "<leader>cf", function() require("conform").format({ lsp_format = "fallback" }) end, { desc = "Format" })
+    keymap.set("n", "<leader>cf", function() require("conform").format({ lsp_format = "fallback" }) end,
+        { desc = "Format" })
     keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
     keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
@@ -34,6 +35,13 @@ function M.setup()
     keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
     keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
     keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
+
+    -- no-neck-pain
+    keymap.set("n", "<leader>zz", "<cmd>NoNeckPain<CR>", { desc = "Toggle No Neck Pain" })
+    keymap.set("n", "<leader>z+", "<cmd>NoNeckPainWidthUp<CR>", { desc = "Increase writing width" })
+    keymap.set("n", "<leader>z-", "<cmd>NoNeckPainWidthDown<CR>", { desc = "Decrease writing width" })
+    keymap.set("n", "<leader>zZ", function() require("zen").toggle() end,
+        { desc = "Toggle writing mode (hide statusline/winbar)" })
 end
 
 return M
