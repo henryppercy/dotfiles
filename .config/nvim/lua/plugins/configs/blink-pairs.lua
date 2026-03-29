@@ -7,6 +7,9 @@ local M = {
 
 function M.config()
     require("blink.pairs").setup({
+        mappings = {
+            disabled_filetypes = { "markdown" },
+        },
         highlights = {
             groups = {
                 "BlinkPairsDepth1",
