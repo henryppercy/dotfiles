@@ -49,11 +49,6 @@ function M.setup()
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufModifiedSet", "WinEnter" }, {
         callback = function()
-            if vim.g.writing_mode then
-                vim.wo.winbar = ""
-                return
-            end
-
             local win = vim.api.nvim_get_current_win()
             local config = vim.api.nvim_win_get_config(win)
 
