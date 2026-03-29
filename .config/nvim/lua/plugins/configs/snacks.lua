@@ -10,28 +10,12 @@ local M = {
 local git_picker_layout = {
     layout = {
         preset = "default",
-        layout = { width = 0.9, height = 0.9 },
+        layout = { backdrop = true, width = 0.9, height = 0.9 },
     },
 }
 
 M.opts = {
-    dashboard = {
-        enabled = true,
-        preset = {
-            header = table.concat({
-                [[                                                                       ]],
-                [[                                                                     ]],
-                [[       ████ ██████           █████      ██                     ]],
-                [[      ███████████             █████                             ]],
-                [[      █████████ ███████████████████ ███   ███████████   ]],
-                [[     █████████  ███    █████████████ █████ ██████████████   ]],
-                [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-                [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-                [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-                [[                                                                       ]],
-            }, "\n"),
-        },
-    },
+    dashboard = { enabled = false },
     indent = {
         enabled = true,
         chunk = {
@@ -41,15 +25,20 @@ M.opts = {
         animate = { enabled = false, },
     },
     picker = {
-        layout = {
-            cycle = true,
-            preset = "dropdown",
-            layout = {
-                backdrop = true,
-                row = 4,
-                width = 0.6,
+        layout = function()
+            if vim.o.columns >= 120 then
+                return {
+                    cycle = true,
+                    preset = "default",
+                    layout = { backdrop = true, width = 0.9, height = 0.9 },
+                }
+            end
+            return {
+                layout = { backdrop = true, },
+                cycle = true,
+                preset = "select"
             }
-        },
+        end,
         sources = {
             git_branches = git_picker_layout,
             git_log = git_picker_layout,
@@ -57,6 +46,13 @@ M.opts = {
             git_status = git_picker_layout,
             git_stash = git_picker_layout,
             git_diff = git_picker_layout,
+            buffers = {
+                layout = {
+                    preset = "dropdown",
+                    layout = { backdrop = true, height = 0.6, row = 0.2 },
+                    preview = false,
+                },
+            },
         },
         icons = {
             files = { enabled = false },
