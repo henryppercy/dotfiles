@@ -18,6 +18,14 @@ function M.setup()
         root_markers = { ".git" },
     })
 
+    vim.lsp.config("vtsls", {
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+        on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+    })
+
     vim.lsp.config("intelephense", {
         settings = {
             intelephense = {
@@ -37,10 +45,13 @@ function M.setup()
         "vtsls", "vue_ls",
         "astro", "eslint",
         "emmet_language_server",
+        "tailwindcss",
 
         "gopls",
 
         "intelephense",
+
+        "sqls",
     })
 
     vim.diagnostic.config({
