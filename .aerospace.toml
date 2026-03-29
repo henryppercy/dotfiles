@@ -86,10 +86,10 @@ run = 'layout floating'
 [gaps]
     inner.horizontal = [{ monitor."LEN L28u-30" = 50 }, 10]
     inner.vertical =   [{ monitor."LEN L28u-30" = 50 }, 10]
-    outer.left =       [{ monitor."LEN L28u-30" = 100 }, 10]
-    outer.bottom =     [{ monitor."LEN L28u-30" = 50 }, 10]
-    outer.top =        [{ monitor."LEN L28u-30" = 20 }, 10]
-    outer.right =      [{ monitor."LEN L28u-30" = 100 }, 10]
+    outer.left =       [{ monitor."LEN L28u-30" = 150 }, 10]
+    outer.bottom =     [{ monitor."LEN L28u-30" = 100 }, 10]
+    outer.top =        [{ monitor."LEN L28u-30" = 100 }, 10]
+    outer.right =      [{ monitor."LEN L28u-30" = 150 }, 10]
 
 
 # 'main' binding mode declaration
