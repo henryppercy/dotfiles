@@ -6,13 +6,14 @@ return {
             lua = { "stylua" },
             go = { "goimports", "gofmt" },
             php = { "pint" },
+            vue = { "eslint" },
         },
         format_on_save = {
             timeout_ms = 500,
             lsp_format = "fallback",
         },
-        default_format_opts = {
-            lsp_format = "fallback",
-        },
+        -- default_format_opts = {
+        --     lsp_format = "fallback",
+        -- },
     },
 }
