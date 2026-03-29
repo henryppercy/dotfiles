@@ -1,0 +1,9 @@
+{
+    "boards": [
+        { "name": "AFS" },
+        { "name": "JSM" },
+        { "name": "TOUC" },
+        { "name": "NONE" }
+    ],
+    "commitTitleCharLimit": 60
+}
