@@ -30,9 +30,25 @@ function M.setup()
     opt.number = true                    -- set numbered lines
     opt.laststatus = 3                   -- display one status line for all windows
     opt.winblend = 5                     -- floating windows transparency
-    opt.spell = true
-    opt.spelllang = { "en_gb" }
-    opt.spelloptions = "camel"
+    opt.spell = false
+    -- opt.wrap = false
+    opt.linebreak = true
+    opt.foldmethod = "expr"
+    opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    opt.foldlevel = 99 -- start with all folds open
+    opt.foldlevelstart = 99
+    opt.relativenumber = true
+
+    -- only really need this if I am not wrapping by default
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "markdown", "text", "gitcommit" },
+        callback = function()
+            vim.opt_local.wrap = true
+            vim.opt_local.spell = true
+            vim.opt_local.spelllang = { "en_gb" }
+            vim.opt_local.spelloptions = "camel"
+        end,
+    })
 
     -- make TreeSitter highlight groups have higher priority than LSP semantic tokens
     vim.highlight.priorities.treesitter = 100
