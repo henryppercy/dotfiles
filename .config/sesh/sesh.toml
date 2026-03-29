@@ -1,5 +1,19 @@
 # Sessions
 [[session]]
+name = "Scratch"
+path = "~"
+
+[[session]]
+name = "Personal"
+path = "~/notes/personal"
+startup_command = "nvim"
+
+[[session]]
+name = "Work"
+path = "~/notes/work"
+startup_command = "nvim"
+
+[[session]]
 name = "Website"
 path = "~/code/personal/astrofolio"
 startup_command = "nvim"
@@ -11,17 +25,19 @@ path = "~/code/personal/dotfiles"
 startup_command = "nvim"
 
 [[session]]
-name = "Neovim Config"
+name = "Config"
 path = "~/code/personal/dotfiles/.config/nvim"
 startup_command = "nvim"
 
 [[session]]
 name = "Base API"
 path = "~/code/rework/ecomm-base"
+startup_command = "nvim"
 
 [[session]]
 name = "Chard API"
 path = "~/code/rework/ecomm-chard"
+startup_command = "nvim"
 
 [[session]]
 name = "Chard Auth"
@@ -30,17 +46,25 @@ windows = ["dev", "mailhog"]
 
 [[session]]
 name = "Chard FE"
+startup_command = "nvim"
 path = "~/code/rework/ecomm-chard-fe"
 
 [[session]]
 name = "Jenson Samuel"
 path = "~/code/rework/jensonsamuelmenswear"
+startup_command = "nvim"
 windows = ["tdev", "mailhog", "elasticsearch"]
 
 [[session]]
 name = "Touch Point"
 path = "~/code/rework/touchpoint"
+startup_command = "nvim"
 windows = ["mailhog"]
+
+[[session]]
+name = "HP Source"
+path = "~/code/personal/hp-source"
+startup_command = "nvim"
 
 # Windows
 [[window]]
