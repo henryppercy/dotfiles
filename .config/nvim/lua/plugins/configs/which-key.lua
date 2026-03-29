@@ -6,12 +6,15 @@ local M = {
 
 local basic_mappings = {
     {
-        { "<leader>b", group = "Buffer" },
-        { "<leader>c", group = "Code" },
-        { "<leader>f", group = "Find" },
-        { "<leader>g", group = "Git" },
-        { "<leader>i", group = "Install" },
-        { "<leader>z", group = "Zen" },
+        { "<leader>b",  group = "Buffer" },
+        { "<leader>c",  group = "Code" },
+        { "<leader>f",  group = "Find" },
+        { "<leader>g",  group = "Git" },
+        { "<leader>I",  group = "Install" },
+        { "<leader>i",  group = "Insert" },
+        { "<leader>n",  group = "Notes" },
+        { "<leader>nt", group = "Time" },
+        { "<leader>z",  group = "Zen" },
     }
 }
 
