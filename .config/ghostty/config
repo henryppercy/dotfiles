@@ -23,8 +23,9 @@ selection-background = #2f3546
 selection-foreground = #E7EAEE
 
 # font
-font-size = 16
-font-family = JetBrainsMono NFM
+font-size = 17
+font-family = JetBrainsMono NFM 
+font-style = Medium
 
 # window sizing
 window-padding-x = 15
