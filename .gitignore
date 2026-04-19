@@ -2,3 +2,4 @@
 .config/tmux/plugins
 .config/sesh/sesh.toml
 .config/meteor/config.json
+.zshrc.local
