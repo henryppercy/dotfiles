@@ -84,8 +84,8 @@ run = 'layout floating'
 #     outer.right =      200
 
 [gaps]
-    inner.horizontal = [{ monitor."LEN L28u-30" = 50 }, 10]
-    inner.vertical =   [{ monitor."LEN L28u-30" = 50 }, 10]
+    inner.horizontal = [{ monitor."LEN L28u-30" = 30 }, 10]
+    inner.vertical =   [{ monitor."LEN L28u-30" = 30 }, 10]
     outer.left =       [{ monitor."LEN L28u-30" = 150 }, 10]
     outer.bottom =     [{ monitor."LEN L28u-30" = 100 }, 10]
     outer.top =        [{ monitor."LEN L28u-30" = 100 }, 10]
