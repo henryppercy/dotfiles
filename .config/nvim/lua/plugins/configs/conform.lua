@@ -6,14 +6,19 @@ return {
             lua = { "stylua" },
             go = { "goimports", "gofmt" },
             php = { "pint" },
-            vue = { "eslint" },
+            javascript = { "prettier", "eslint_d" },
+            javascriptreact = { "prettier", "eslint_d" },
+            typescript = { "prettier", "eslint_d" },
+            typescriptreact = { "prettier", "eslint_d" },
+            vue = { "prettier", "eslint_d" },
+            astro = { "prettier", "eslint_d" },
         },
         format_on_save = {
-            timeout_ms = 500,
+            timeout_ms = 1000,
             lsp_format = "fallback",
         },
-        -- default_format_opts = {
-        --     lsp_format = "fallback",
-        -- },
+        default_format_opts = {
+            lsp_format = "fallback",
+        },
     },
 }
