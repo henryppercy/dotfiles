@@ -35,7 +35,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # Window rules
-for_window [app_id="^sway.launcher$"] floating enable, sticky enable, resize set 60 ppt 60 ppt, border pixel 2, move position center
+for_window [app_id="^sway.launcher$"] floating enable, sticky enable, resize set 40 ppt 70 ppt, border pixel 2, move position center
 for_window [app_id="^sway.clipboard$"] floating enable, resize set 60 ppt 60 ppt, move position center, border pixel 2
 for_window [app_id="^sway.power$"] floating enable, resize set 20 ppt 30 ppt, move position center, border pixel 2
 for_window [app_id="^sway.terminal$"] floating enable, resize set 70 ppt 70 ppt, move position center, border pixel 2
@@ -51,8 +51,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+Shift+c reload
 bindsym $mod+Escape exec swaylock -f
-bindsym $mod+p exec $term --class=sway.clipboard -e bash -c 'cliphist list | fzf --layout=reverse --bind=ctrl-j:down,ctrl-k:up | cliphist decode | wl-copy'
-bindsym $mod+Shift+p exec $term --class=sway.power -e power-menu
+bindsym $mod+p exec $term --class=sway.clipboard -e bash -c 'cliphist list | fzf --layout=reverse --no-sort --ansi --no-scrollbar --no-separator --no-info --bind tab:down,btab:up --color "bg:#171B20,fg:#586172,fg+:#E7EAEE,bg+:#1E2430" --color "hl:#5CCEFF,hl+:#5CCEFF,pointer:#38FFA5,prompt:#38FFA5" --color "header:#586172,label:#5CCEFF,border:#586172" | cliphist decode | wl-copy'
+bindsym $mod+Shift+p exec $term --class=sway.power -e bash -c 'export FZF_DEFAULT_OPTS="--layout=reverse --no-sort --ansi --no-scrollbar --no-separator --no-info --bind tab:down,btab:up --color bg:#171B20,fg:#586172,fg+:#E7EAEE,bg+:#1E2430 --color hl:#5CCEFF,hl+:#5CCEFF,pointer:#38FFA5,prompt:#38FFA5 --color header:#586172,label:#5CCEFF,border:#586172"; power-menu'
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
 floating_modifier $mod normal
 
