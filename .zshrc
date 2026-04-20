@@ -1,3 +1,6 @@
+# Machine-specific config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -49,5 +52,3 @@ bindkey '^x^e' edit-command-line
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# Machine-specific config
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
