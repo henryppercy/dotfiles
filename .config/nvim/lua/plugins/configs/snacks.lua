@@ -29,8 +29,8 @@ M.opts = {
             if vim.o.columns >= 120 then
                 return {
                     cycle = true,
-                    preset = "default",
-                    layout = { backdrop = true, width = 0.9, height = 0.9 },
+                    preset = "vertical",
+                    layout = { backdrop = true, width = 0.8, height = 0.8 },
                 }
             end
             return {
