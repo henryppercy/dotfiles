@@ -2,47 +2,21 @@ local M = {}
 
 function M.setup()
     --------------------------------------------------------------------------
-    -- Build hooks (must be registered before vim.pack.add)
-    --------------------------------------------------------------------------
-    vim.api.nvim_create_autocmd("PackChanged", {
-        callback = function(ev)
-            if ev.data.spec.name == "nvim-treesitter" and ev.data.kind ~= "delete" then
-                if not ev.data.active then
-                    vim.cmd.packadd("nvim-treesitter")
-                end
-                vim.cmd("TSUpdate")
-            end
-        end,
-    })
-
-    --------------------------------------------------------------------------
     -- Immediate plugins (loaded at startup)
     --------------------------------------------------------------------------
-    vim.pack.add({
-        -- Colorscheme (must be first)
-        "https://github.com/serhez/teide.nvim",
-
-        -- UI
-        "https://github.com/folke/snacks.nvim",
-        "https://github.com/folke/which-key.nvim",
-        "https://github.com/nvim-lualine/lualine.nvim",
-
-        -- Treesitter
-        "https://github.com/nvim-treesitter/nvim-treesitter",
-
-        -- LSP server configs
-        "https://github.com/neovim/nvim-lspconfig",
-
-        -- Completion (dependency first)
-        "https://github.com/rafamadriz/friendly-snippets",
-        { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.x") },
-
-        -- Tools
-        "https://github.com/williamboman/mason.nvim",
-        "https://github.com/stevearc/oil.nvim",
-        "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-        "https://github.com/shortcuts/no-neck-pain.nvim",
-    })
+    vim.cmd.packadd("teide.nvim")
+    vim.cmd.packadd("snacks.nvim")
+    vim.cmd.packadd("which-key.nvim")
+    vim.cmd.packadd("lualine.nvim")
+    vim.cmd.packadd("nvim-treesitter")
+    vim.cmd.packadd("nvim-lspconfig")
+    vim.cmd.packadd("friendly-snippets")
+    vim.cmd.packadd("blink.lib")
+    vim.cmd.packadd("blink.cmp")
+    vim.cmd.packadd("mason.nvim")
+    vim.cmd.packadd("oil.nvim")
+    vim.cmd.packadd("render-markdown.nvim")
+    vim.cmd.packadd("no-neck-pain.nvim")
 
     -- Configure in load order
     require("plugins.teide").setup()
@@ -62,10 +36,8 @@ function M.setup()
     vim.api.nvim_create_autocmd("BufReadPost", {
         once = true,
         callback = function()
-            vim.pack.add({
-                "https://github.com/lewis6991/gitsigns.nvim",
-                "https://github.com/folke/todo-comments.nvim",
-            })
+            vim.cmd.packadd("gitsigns.nvim")
+            vim.cmd.packadd("todo-comments.nvim")
             require("plugins.gitsigns").setup()
             require("plugins.todo-comments").setup()
         end,
@@ -79,7 +51,7 @@ function M.setup()
     vim.api.nvim_create_autocmd("BufWritePre", {
         once = true,
         callback = function(ev)
-            vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
+            vim.cmd.packadd("conform.nvim")
             require("plugins.conform").setup()
             require("conform").format({ lsp_format = "fallback", buf = ev.buf })
         end,
@@ -89,7 +61,7 @@ function M.setup()
     vim.api.nvim_create_autocmd("InsertEnter", {
         once = true,
         callback = function()
-            vim.pack.add({ "https://github.com/windwp/nvim-ts-autotag" })
+            vim.cmd.packadd("nvim-ts-autotag")
             require("plugins.autotag").setup()
         end,
     })
@@ -97,7 +69,7 @@ function M.setup()
     -- Inlinediff: load on first use
     local function ensure_inlinediff()
         if not package.loaded["inlinediff"] then
-            vim.pack.add({ "https://github.com/YouSame2/inlinediff-nvim" })
+            vim.cmd.packadd("inlinediff-nvim")
             require("plugins.inlinediff").setup()
         end
         return require("inlinediff")

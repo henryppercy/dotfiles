@@ -1,0 +1,17 @@
+# Teide colors for dunst
+# For more configuration options see https://github.com/dunst-project/dunst/blob/master/dunstrc
+
+[urgency_low]
+    background = "#e1e6eb"
+    foreground = "#4c545d"
+    frame_color = "#4c545d"
+
+[urgency_normal]
+    background = "#d4dbe4"
+    foreground = "#4c545d"
+    frame_color = "#4c545d"
+
+[urgency_critical]
+    background = "#c0c6d3"
+    foreground = "#c81d47"
+    frame_color = "#c81d47"

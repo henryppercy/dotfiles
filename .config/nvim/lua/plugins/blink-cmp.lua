@@ -25,7 +25,7 @@ function M.setup()
                 markdown = {},
             },
         },
-        fuzzy = { implementation = "prefer_rust_with_warning" },
+        fuzzy = { implementation = "lua" },
     })
 end
 

@@ -3,7 +3,8 @@ local M = {}
 function M.setup()
     -- nvim-treesitter stores queries under runtime/queries/ not queries/
     -- so we need to add the runtime/ subdirectory to the runtimepath
-    local ts_path = vim.fn.stdpath("data") .. "/site/pack/core/opt/nvim-treesitter/runtime"
+    local config_dir = vim.fn.stdpath("config")
+    local ts_path = config_dir .. "/pack/vendor/opt/nvim-treesitter/runtime"
     if vim.fn.isdirectory(ts_path) == 1 then
         vim.opt.runtimepath:append(ts_path)
     end

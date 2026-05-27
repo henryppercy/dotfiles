@@ -1,0 +1,28 @@
+{
+  "name": "Teide Darker",
+  "version": 1,
+  "shared": {
+    "backgroundColor": "#171B20",
+    "colorPaletteOverrides": [
+      "#12161a",
+      "#F97791",
+      "#38FFA5",
+      "#FFA064",
+      "#5CCEFF",
+      "#B2A3FF",
+      "#0AE7FF",
+      "#a9b1d6",
+      "#414868",
+      "#F73F64",
+      "#41FFDC",
+      "#FFE77A",
+      "#89BEFF",
+      "#FFB3EC",
+      "#00FBFF",
+      "#E7EAEE",
+    ],
+    "cursorColor": "#E7EAEE",
+    "foregroundColor": "#E7EAEE"
+  }
+}
+

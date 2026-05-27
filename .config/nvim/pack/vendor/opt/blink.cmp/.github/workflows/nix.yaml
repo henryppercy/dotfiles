@@ -1,0 +1,45 @@
+name: Test Nix
+
+on:
+  push:
+    paths:
+      - "**/*.lua"
+      - "**/*.rs"
+      - ".cargo/**"
+      - Cargo.lock
+      - Cargo.toml
+      - Cross.toml
+      - rust-toolchain.toml
+      - flake.lock
+      - flake.nix
+      - .github/workflows/nix.yaml
+  pull_request:
+    paths:
+      - "**/*.lua"
+      - "**/*.rs"
+      - ".cargo/**"
+      - Cargo.lock
+      - Cargo.toml
+      - Cross.toml
+      - rust-toolchain.toml
+      - flake.lock
+      - flake.nix
+      - .github/workflows/nix.yaml
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    name: Test Nix Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+
+      - name: Check the flake
+        run: nix flake check
