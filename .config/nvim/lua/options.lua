@@ -30,6 +30,7 @@ function M.setup()
     opt.number = true                    -- set numbered lines
     opt.laststatus = 3                   -- display one status line for all windows
     opt.winblend = 5                     -- floating windows transparency
+    opt.winborder = "rounded"            -- floating window border
     opt.spell = false
     -- opt.wrap = false
     opt.linebreak = true
