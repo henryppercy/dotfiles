@@ -3,5 +3,5 @@
 .config/tmux/plugins
 .config/sesh/sesh.toml
 .config/meteor/config.json
-.config/nvim/spell/*.spl
+.config/nvim/spell
 .zshrc.local
