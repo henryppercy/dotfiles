@@ -1,9 +1,6 @@
-local M = {
-    "nvim-lualine/lualine.nvim",
-    lazy = false,
-}
+local M = {}
 
-function M.opts()
+function M.setup()
     local icons = require("icons")
 
     -- Custom filepath component with color change on modified
@@ -48,7 +45,7 @@ function M.opts()
         return vim.fn.reg_recording() ~= ""
     end
 
-    return {
+    require("lualine").setup({
         options = {
             theme = "teide",
             icons_enabled = true,
@@ -118,7 +115,7 @@ function M.opts()
         winbar = {},
         inactive_winbar = {},
         extensions = {},
-    }
+    })
 end
 
 return M

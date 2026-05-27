@@ -1,8 +1,8 @@
-local M = {
-    "stevearc/oil.nvim",
-}
+local M = {}
 
-function M.init()
+function M.setup()
+    local icons = require("icons")
+
     require("mappings").register({
         "<leader>e",
         function()
@@ -10,13 +10,8 @@ function M.init()
         end,
         desc = "Explorer",
     })
-end
 
-function M.config()
-    local icons = require("icons")
-    local oil = require("oil")
-
-    oil.setup({
+    require("oil").setup({
         default_file_explorer = true,
         delete_to_trash = true,
         columns = {

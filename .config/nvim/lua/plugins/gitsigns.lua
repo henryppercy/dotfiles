@@ -1,9 +1,6 @@
-local M = {
-    "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
-}
+local M = {}
 
-function M.config()
+function M.setup()
     local colors = require("teide.colors").setup()
 
     require("gitsigns").setup({
@@ -11,16 +8,16 @@ function M.config()
         signs = {
             add = { text = "▎" },
             change = { text = "▎" },
-            delete = { text = "" },
-            topdelete = { text = "" },
+            delete = { text = "" },
+            topdelete = { text = "" },
             changedelete = { text = "▎" },
             untracked = { text = "┆" },
         },
         signs_staged = {
             add = { text = "▎" },
             change = { text = "▎" },
-            delete = { text = "" },
-            topdelete = { text = "" },
+            delete = { text = "" },
+            topdelete = { text = "" },
             changedelete = { text = "▎" },
             untracked = { text = "┆" },
         },

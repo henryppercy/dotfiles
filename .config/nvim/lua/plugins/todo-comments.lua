@@ -1,9 +1,6 @@
-local M = {
-    "folke/todo-comments.nvim",
-    event = "VeryLazy",
-}
+local M = {}
 
-function M.config()
+function M.setup()
     local icons = require("icons")
 
     require("todo-comments").setup({

@@ -1,13 +1,10 @@
--- https://github.com/serhez/teide.nvim
-local M = {
-    "serhez/teide.nvim",
-    name = "teide.nvim",
-}
+local M = {}
 
-function M.config()
+function M.setup()
     local teide = require("teide")
     teide.setup({
         cache = false,
+        plugins = { all = true },
         terminal_colors = true,
         style = "darker",
         styles = {
@@ -75,7 +72,6 @@ function M.config()
     })
     teide.load()
 
-    -- can this be done in the snacks.picker config
     local colors = require("teide.colors").setup()
     vim.api.nvim_set_hl(0, "SnacksPicker", { bg = colors.bg_darker, nocombine = true })
     vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = colors.fg_gutter, bg = colors.bg_darker, nocombine = true })

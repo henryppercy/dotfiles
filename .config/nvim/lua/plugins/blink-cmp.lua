@@ -1,11 +1,7 @@
-local M = {
-    "saghen/blink.cmp",
-    dependencies = {
-        "rafamadriz/friendly-snippets",
-    },
-    version = "1.*",
+local M = {}
 
-    opts = {
+function M.setup()
+    require("blink.cmp").setup({
         keymap = {
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-e>"] = { "hide" },
@@ -30,8 +26,7 @@ local M = {
             },
         },
         fuzzy = { implementation = "prefer_rust_with_warning" },
-    },
-    opts_extend = { "sources.default" },
-}
+    })
+end
 
 return M

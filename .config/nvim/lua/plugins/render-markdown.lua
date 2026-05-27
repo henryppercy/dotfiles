@@ -1,7 +1,7 @@
-return {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ---@module 'render-markdown'
-    opts = {
+local M = {}
+
+function M.setup()
+    require("render-markdown").setup({
         sign = {
             enabled = false
         },
@@ -23,15 +23,17 @@ return {
         },
         checkbox = {
             checked = { icon = "󰄮" },
-            unchecked = { icon = "" },
+            unchecked = { icon = "" },
             custom = {
                 cancelled = {
                     raw = '[-]',
-                    rendered = '',
+                    rendered = '',
                     highlight = 'RenderMarkdownCancelled',
                     scope_highlight = 'RenderMarkdownCancelledScope',
                 },
             },
         },
-    },
-}
+    })
+end
+
+return M

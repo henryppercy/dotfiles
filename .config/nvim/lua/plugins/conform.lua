@@ -1,7 +1,7 @@
-return {
-    "stevearc/conform.nvim",
-    event = "BufWritePre",
-    opts = {
+local M = {}
+
+function M.setup()
+    require("conform").setup({
         formatters_by_ft = {
             lua = { "stylua" },
             go = { "goimports", "gofmt" },
@@ -20,5 +20,7 @@ return {
         default_format_opts = {
             lsp_format = "fallback",
         },
-    },
-}
+    })
+end
+
+return M

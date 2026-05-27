@@ -1,14 +1,6 @@
-local M = {
-    "YouSame2/inlinediff-nvim",
-    lazy = true,
-    cmd = "InlineDiff",
-}
+local M = {}
 
-function M.init()
-    require("mappings").register({ "<leader>gD", function() require("inlinediff").toggle() end, desc = "Toggle Inline Diff" })
-end
-
-function M.config()
+function M.setup()
     local colors = require("teide.colors").setup()
 
     require("inlinediff").setup({
