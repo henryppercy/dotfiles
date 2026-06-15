@@ -23,6 +23,13 @@ function M.setup()
             default = { "lsp", "path", "snippets", "buffer" },
             per_filetype = {
                 markdown = {},
+                ledger   = { "ledger_accounts", "buffer" },
+            },
+            providers = {
+                ledger_accounts = {
+                    name   = "ledger",
+                    module = "blink.compat.source",
+                },
             },
         },
         fuzzy = { implementation = "lua" },

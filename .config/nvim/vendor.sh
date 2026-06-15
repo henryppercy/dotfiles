@@ -25,6 +25,9 @@ PLUGINS=(
     "stevearc/conform.nvim conform.nvim"
     "windwp/nvim-ts-autotag nvim-ts-autotag"
     "YouSame2/inlinediff-nvim inlinediff-nvim"
+    "falsycat/ledger.nvim ledger.nvim"
+    "wllfaria/ledger.nvim wllfaria-ledger.nvim"
+    "Saghen/blink.compat blink.compat"
 )
 
 clone_plugin() {

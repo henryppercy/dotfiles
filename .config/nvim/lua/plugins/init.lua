@@ -66,6 +66,19 @@ function M.setup()
         end,
     })
 
+    -- Ledger: load on ledger filetype
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "ledger",
+        once = true,
+        callback = function()
+            vim.cmd.packadd("ledger.nvim")
+            require("plugins.ledger").setup()
+            vim.cmd.packadd("blink.compat")
+            vim.cmd.packadd("wllfaria-ledger.nvim")
+            require("plugins.wllfaria-ledger").setup()
+        end,
+    })
+
     -- Inlinediff: load on first use
     local function ensure_inlinediff()
         if not package.loaded["inlinediff"] then

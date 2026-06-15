@@ -26,6 +26,7 @@ function M.setup()
     keymap.set("n", "<leader>cf", function() require("conform").format({ lsp_format = "fallback" }) end,
         { desc = "Format" })
     keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+    keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic float" })
     keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
     -- buffer
