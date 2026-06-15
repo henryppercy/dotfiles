@@ -94,6 +94,10 @@ function M.setup()
     map("n", "<leader>fh", function() snacks.picker.help() end, { desc = "Help" })
     map("n", "<leader>fr", function() snacks.picker.recent() end, { desc = "Recents" })
 
+    map("n", "<leader>fa", function() snacks.picker.files({ hidden = true, ignored = true }) end, { desc = "Find All Files (incl. gitignored)" })
+    map("n", "<leader>fG", function() snacks.picker.grep({ ignored = true, hidden = true }) end, { desc = "Grep All (incl. gitignored)" })
+    map("n", "<leader>fe", function() snacks.picker.files({ ignored = true, hidden = true, args = { "--glob", ".env*" } }) end, { desc = "Find Env Files" })
+
     map("n", "<leader>fc", function() snacks.picker.todo_comments() end, { desc = "Comments" })
     map("n", "<leader>ft", function() snacks.picker.todo_comments({ keywords = { "TODO" } }) end, { desc = "TODOs" })
     map("n", "<leader>fn", function() snacks.picker.todo_comments({ keywords = { "NOTE" } }) end, { desc = "Notes" })
