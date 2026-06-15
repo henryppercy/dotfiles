@@ -158,6 +158,7 @@ run = 'layout floating'
     alt-7 = 'workspace 7'
     alt-s = 'workspace s'
     alt-o = 'workspace o'
+    alt-m = 'workspace m'
 
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -170,6 +171,7 @@ run = 'layout floating'
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-s = 'move-node-to-workspace s'
     alt-shift-o = 'move-node-to-workspace o'
+    alt-shift-m = 'move-node-to-workspace m'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -182,16 +184,17 @@ run = 'layout floating'
     alt-backspace = 'mode hash'
 
 # force workspace onto specific monitor, run `aerospace list-monitors` for name
-# [workspace-to-monitor-force-assignment]
-#     1 = 'LC34G55T'
-#     2 = 'LC34G55T'
-#     3 = 'LC34G55T'
-#     4 = 'LC34G55T'
-#     5 = 'LC34G55T'
-#     6 = 'LC34G55T'
-#     7 = 'LC34G55T'
-#     o = 'LC34G55T'
-#     s = 'LC34G55T'
+[workspace-to-monitor-force-assignment]
+    1 = 'LEN L28u-30'
+    2 = 'LEN L28u-30'
+    3 = 'LEN L28u-30'
+    4 = 'LEN L28u-30'
+    5 = 'LEN L28u-30'
+    6 = 'LEN L28u-30'
+    7 = 'LEN L28u-30'
+    o = 'LEN L28u-30'
+    s = 'LEN L28u-30'
+    m = 'built-in'
 
 [mode.hash.binding]
     alt-backspace = 'mode main'
