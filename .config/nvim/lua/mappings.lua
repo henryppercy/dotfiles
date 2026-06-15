@@ -49,19 +49,19 @@ function M.setup()
     keymap.set(
         "n",
         "<leader>it",
-        function() vim.api.nvim_put({ tostring(os.date("%H:%M")) }, "c", true, true) end,
+        function() vim.api.nvim_put({ tostring(os.date("%H:%M")) }, "l", true, true) end,
         { desc = "Insert timestamp" }
     )
     keymap.set(
         "n",
         "<leader>id",
-        function() vim.api.nvim_put({ tostring(os.date("%Y-%m-%d")) }, "c", true, true) end,
+        function() vim.api.nvim_put({ tostring(os.date("%Y-%m-%d")) }, "l", true, true) end,
         { desc = "Insert date" }
     )
     keymap.set(
         "n",
         "<leader>idt",
-        function() vim.api.nvim_put({ tostring(os.date("%a %Y-%m-%d - %H:%M")) }, "c", true, true) end,
+        function() vim.api.nvim_put({ tostring(os.date("%a %Y-%m-%d - %H:%M")) }, "l", true, true) end,
         { desc = "Insert date and timestamp" }
     )
     keymap.set(
