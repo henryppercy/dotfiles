@@ -31,12 +31,12 @@ function M.setup()
     -- buffer
     keymap.set("n", "<leader>bb", "<C-^><CR>", { desc = "Alternative buffer" })
     keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
-    keymap.set("n", "<leader>by", ":%y+<CR>", { desc = "Yank buffer to clipboard" })
-    keymap.set("n", "<leader>bY", function()
+    keymap.set("n", "<leader>by", function()
         local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
         vim.fn.setreg("+", path)
         vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
     end, { desc = "Copy relative path" })
+    keymap.set("n", "<leader>bY", ":%y+<CR>", { desc = "Yank buffer to clipboard" })
     keymap.set("n", "<leader>bc", "<cmd>NoNeckPain<CR>", { desc = "Center buffer" })
 
     -- split navigation
