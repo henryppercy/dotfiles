@@ -23,13 +23,17 @@ function M.setup()
         },
         checkbox = {
             checked = { icon = "󰄮" },
-            unchecked = { icon = "" },
+            unchecked = { icon = "" },
             custom = {
                 cancelled = {
                     raw = '[-]',
                     rendered = '',
                     highlight = 'RenderMarkdownCancelled',
                     scope_highlight = 'RenderMarkdownCancelledScope',
+                },
+                in_progress = {
+                    raw = '[/]',
+                    rendered = '◧',
                 },
             },
         },
