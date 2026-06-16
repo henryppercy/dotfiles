@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+source ~/.config/theme/fzf.sh 2>/dev/null
+
+sesh connect "$(
+  sesh list --icons | fzf-tmux -p 40%,50% \
+    --layout=reverse \
+    --no-sort --ansi \
+    --header '^a all  ^t tmux  ^x kill  ^f find' \
+    --no-scrollbar --no-separator --prompt '' \
+    --bind 'tab:down,btab:up' \
+    --bind 'ctrl-a:reload(sesh list --icons)' \
+    --bind 'ctrl-t:reload(sesh list -t --icons)' \
+    --bind 'ctrl-f:reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-x:execute(tmux kill-session -t {2..})+reload(sesh list --icons)' \
+    --no-preview \
+    --no-info
+)"

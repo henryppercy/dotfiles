@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+WALLPAPER_DIR="$HOME/.config/wallpapers"
+
+source ~/.config/theme/fzf.sh 2>/dev/null
+
+selected=$(
+    find "$WALLPAPER_DIR" -maxdepth 1 \( -iname "*.jpg" -o -iname "*.png" \) -printf "%f\n" |
+    sort |
+    awk '{
+        name=$0
+        sub(/\.[^.]+$/, "", name)
+        gsub(/-/, " ", name)
+        n=split(name, words, " ")
+        result=""
+        for (i=1; i<=n; i++) {
+            word=words[i]
+            result=result (i>1 ? " " : "") toupper(substr(word,1,1)) substr(word,2)
+        }
+        print result
+    }' |
+    fzf --layout=reverse --no-sort --ansi --no-scrollbar --no-separator --no-info \
+        --bind="tab:down,btab:up,ctrl-j:down,ctrl-k:up" \
+        --prompt="Wallpaper: "
+)
+
+[ -z "$selected" ] && exit 0
+
+stem=$(echo "$selected" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+filepath=$(find "$WALLPAPER_DIR" -maxdepth 1 \( -iname "$stem.jpg" -o -iname "$stem.png" \) | head -1)
+
+[ -z "$filepath" ] && exit 1
+
+ln -sf "$filepath" "$WALLPAPER_DIR/current"
+swaymsg "output * bg '$filepath' fill"

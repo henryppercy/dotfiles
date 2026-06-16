@@ -1,0 +1,13 @@
+#!/bin/bash
+
+options="Lock\nSuspend\nHibernate\nReboot\nShutdown\nLogout"
+
+selected=$(echo -e "$options" | fzf --layout=reverse --bind=ctrl-j:down,ctrl-k:up --prompt="Power: ")
+
+case "$selected" in
+    Lock) swaymsg exec "swaylock -f" ;;
+    Suspend) swaymsg exec "swaylock -f && systemctl suspend" ;;
+    Hibernate) swaymsg exec "swaylock -f && systemctl hibernate" ;;
+    Reboot) systemctl reboot ;;
+    Shutdown) systemctl poweroff ;;
+esac

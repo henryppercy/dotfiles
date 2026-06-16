@@ -14,7 +14,7 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-    background: rgba(23, 27, 32, 0.92);
+    background: rgba(29, 34, 40, 0.92);
     border-radius: 6px;
     padding: 5px 14px;
 }

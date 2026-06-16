@@ -4,58 +4,60 @@
     "margin-top": 8,
     "margin-left": 16,
     "margin-right": 16,
-    "spacing": 8,
 
     "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "battery", "custom/power", "tray"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "battery", "tray"],
 
     "sway/workspaces": {
-        "disable-scroll": true
+        "disable-scroll": true,
+        "format": "●",
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": []
+        }
     },
 
     "clock": {
-        "format": "{:%a %d %b  %H:%M}"
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A %d %B %Y}"
     },
 
-	"battery": {
-		"format": "{icon} {capacity}%",
-		"format-charging": "󰂄 {capacity}%",
-		"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-	},
+    "battery": {
+        "format": "{icon}",
+        "format-charging": "󰂄",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{capacity}%  {time}"
+    },
 
-	"network": {
-		"format-wifi": "{icon} {signalStrength}%",
-		"format-disconnected": "󰤭 off",
-		"format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-		"on-click": "ghostty --class=sway.floating -e impala"
-	},
+    "network": {
+        "format-wifi": "{icon}",
+        "format-disconnected": "󰤭",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": "{essid}  {signalStrength}%",
+        "on-click": "ghostty --class=sway.floating -e impala"
+    },
 
-	"bluetooth": {
-		"format": "󰂯",
-		"format-disabled": "󰂲",
-		"format-connected": "󰂱 {device_alias}",
-		"format-connected-battery": "󰂱 {device_alias} ({device_battery_percentage}%)",
-		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-		"on-click": "ghostty --class=sway.floating -e bluetui",
-		"on-click-right": "rfkill toggle bluetooth"
-	},
-	"pulseaudio": {
-		"format": "{icon} {volume}%",
-			"format-muted": "󰝟",
-			"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
-		},
-		"on-click": "ghostty --class=sway.floating -e wiremix",
-		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-	},
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {device_alias}",
+        "format-connected-battery": "󰂱 {device_alias} ({device_battery_percentage}%)",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "ghostty --class=sway.floating -e bluetui",
+        "on-click-right": "rfkill toggle bluetooth"
+    },
 
-    "custom/power": {
-        "format": "󰐥",
-        "on-click": "ghostty --class=sway.power -e power-menu",
-        "tooltip": false
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{volume}%",
+        "on-click": "ghostty --class=sway.floating -e wiremix",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     }
 }

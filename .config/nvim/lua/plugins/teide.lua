@@ -1,12 +1,16 @@
 local M = {}
 
 function M.setup()
+    local ok, lines = pcall(vim.fn.readfile, vim.fn.expand("~/.config/theme/current"))
+    local style = (ok and lines and lines[1]) or "darker"
+
     local teide = require("teide")
-    teide.setup({
+
+    local opts = {
         cache = false,
         plugins = { all = true },
         terminal_colors = true,
-        style = "darker",
+        style = style,
         styles = {
             comments = { italic = true },
             keywords = { italic = true },
@@ -69,13 +73,45 @@ function M.setup()
             hl["RenderMarkdownCancelled"] = { fg = c.fg_dark }
             hl["RenderMarkdownCancelledScope"] = { fg = c.fg_dark, strikethrough = true }
         end,
-    })
-    teide.load()
+    }
 
-    local colors = require("teide.colors").setup()
-    vim.api.nvim_set_hl(0, "SnacksPicker", { bg = colors.bg_darker, nocombine = true })
-    vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = colors.fg_gutter, bg = colors.bg_darker, nocombine = true })
-    vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { fg = colors.fg_gutter, bg = colors.bg_darker, nocombine = true })
+    -- Persist the style into teide's global options (teide.setup mutates them),
+    -- then fire the colorscheme command so the ColorScheme autocmds below and
+    -- lualine pick up the new style. teide.load() / lualine read opts.style, so
+    -- it must be updated here or they keep rendering the initial variant.
+    local function apply(s)
+        opts.style = s
+        teide.setup(opts)
+        vim.cmd("colorscheme teide-" .. s)
+    end
+
+    -- Re-apply custom highlights on every teide switch, using the active variant.
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "teide-*",
+        callback = function()
+            local s = vim.g.colors_name and vim.g.colors_name:match("^teide%-(.+)")
+            if not s then return end
+            local c = require("teide.colors").setup({ style = s })
+            vim.api.nvim_set_hl(0, "SnacksPicker", { bg = c.bg_darker, nocombine = true })
+            vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = c.fg_gutter, bg = c.bg_darker, nocombine = true })
+            vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { fg = c.fg_gutter, bg = c.bg_darker, nocombine = true })
+        end,
+    })
+
+    local theme_file = vim.fn.expand("~/.config/theme/current")
+    if vim.fn.filereadable(theme_file) == 1 then
+        local w = vim.uv.new_fs_event()
+        w:start(theme_file, {}, function()
+            vim.schedule(function()
+                local ok2, ls = pcall(vim.fn.readfile, theme_file)
+                local new_style = ok2 and ls and ls[1]
+                if not new_style or new_style == "" then return end
+                apply(new_style)
+            end)
+        end)
+    end
+
+    apply(style)
 end
 
 return M

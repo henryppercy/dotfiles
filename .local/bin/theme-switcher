@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/code/dotfiles"
+EXTRAS="$DOTFILES/.config/nvim/pack/vendor/opt/teide.nvim/extras"
+THEME_DIR="$HOME/.config/theme"
+
+source "$THEME_DIR/fzf.sh" 2>/dev/null
+
+current=$(cat "$THEME_DIR/current" 2>/dev/null | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
+variant=$(printf "Darker\nDark\nDimmed\nLight" | \
+    fzf --layout=reverse --no-sort --no-scrollbar --no-separator --no-info \
+        --bind="tab:down,btab:up,ctrl-j:down,ctrl-k:up" \
+        --prompt="Theme: " \
+        --header="Current: ${current:-Darker}" | \
+    tr '[:upper:]' '[:lower:]')
+
+[ -z "$variant" ] && exit 0
+
+case "$variant" in
+    darker)
+        FZF_BG="#171B20"; FZF_BG_SEL="#1D2228"
+        FZF_FG="#E7EAEE"; FZF_FG_DIM="#586172"
+        FZF_HL="#38FFA5"; FZF_POINTER="#38FFA5"
+        SYS_SCHEME="prefer-dark"
+        MK_BG="#171B20EE"; MK_FG="#E7EAEE"; MK_BORDER="#474E5C"
+        SL_TEXT="E7EAEE"; SL_RING_VER="38FFA5"; SL_RING_WRONG="F73F64"
+        SL_RING_IDLE="474E5C"; SL_RING_CLEAR="586172"
+        TM_BG="#171B20"; TM_FG="#E7EAEE"; TM_TEXT="#171B20"
+        TM_COMMENT="#586172"; TM_SESSION="#38FFA5"
+        TM_RIGHT="#5CCEFF"; TM_RED="#F73F64"
+        ;;
+    dark)
+        FZF_BG="#1D2228"; FZF_BG_SEL="#232930"
+        FZF_FG="#E7EAEE"; FZF_FG_DIM="#586172"
+        FZF_HL="#38FFA5"; FZF_POINTER="#38FFA5"
+        SYS_SCHEME="prefer-dark"
+        MK_BG="#1D2228EE"; MK_FG="#E7EAEE"; MK_BORDER="#474E5C"
+        SL_TEXT="E7EAEE"; SL_RING_VER="38FFA5"; SL_RING_WRONG="F73F64"
+        SL_RING_IDLE="474E5C"; SL_RING_CLEAR="586172"
+        TM_BG="#1D2228"; TM_FG="#E7EAEE"; TM_TEXT="#1D2228"
+        TM_COMMENT="#586172"; TM_SESSION="#38FFA5"
+        TM_RIGHT="#5CCEFF"; TM_RED="#F73F64"
+        ;;
+    dimmed)
+        FZF_BG="#232930"; FZF_BG_SEL="#2C313A"
+        FZF_FG="#E7EAEE"; FZF_FG_DIM="#586172"
+        FZF_HL="#38FFA5"; FZF_POINTER="#38FFA5"
+        SYS_SCHEME="prefer-dark"
+        MK_BG="#232930EE"; MK_FG="#E7EAEE"; MK_BORDER="#474E5C"
+        SL_TEXT="E7EAEE"; SL_RING_VER="38FFA5"; SL_RING_WRONG="F73F64"
+        SL_RING_IDLE="474E5C"; SL_RING_CLEAR="586172"
+        TM_BG="#232930"; TM_FG="#E7EAEE"; TM_TEXT="#232930"
+        TM_COMMENT="#586172"; TM_SESSION="#38FFA5"
+        TM_RIGHT="#5CCEFF"; TM_RED="#F73F64"
+        ;;
+    light)
+        FZF_BG="#D4DBE4"; FZF_BG_SEL="#C7CDD6"
+        FZF_FG="#4C545D"; FZF_FG_DIM="#828FA7"
+        FZF_HL="#00663D"; FZF_POINTER="#00663D"
+        SYS_SCHEME="prefer-light"
+        MK_BG="#E1E6EBEE"; MK_FG="#4C545D"; MK_BORDER="#99A3B8"
+        SL_TEXT="4C545D"; SL_RING_VER="00663D"; SL_RING_WRONG="C81D47"
+        SL_RING_IDLE="99A3B8"; SL_RING_CLEAR="828FA7"
+        TM_BG="#D4DBE4"; TM_FG="#4C545D"; TM_TEXT="#D4DBE4"
+        TM_COMMENT="#828FA7"; TM_SESSION="#00663D"
+        TM_RIGHT="#007496"; TM_RED="#C81D47"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+echo "$variant" > "$THEME_DIR/current"
+
+# Generate fzf colors file with bg matching the terminal background
+rm -f "$THEME_DIR/fzf.sh"
+cat > "$THEME_DIR/fzf.sh" << EOF
+export FZF_DEFAULT_OPTS="\$FZF_DEFAULT_OPTS \\
+  --ansi \\
+  --layout=reverse \\
+  --color=bg:${FZF_BG} \\
+  --color=bg+:${FZF_BG_SEL} \\
+  --color=fg:${FZF_FG_DIM} \\
+  --color=fg+:${FZF_FG} \\
+  --color=hl:${FZF_HL} \\
+  --color=hl+:${FZF_HL} \\
+  --color=pointer:${FZF_POINTER} \\
+  --color=prompt:${FZF_POINTER} \\
+  --color=header:${FZF_FG_DIM} \\
+  --color=label:${FZF_HL} \\
+  --color=border:${FZF_FG_DIM} \\
+"
+EOF
+
+# Write through stow symlinks safely (cat > preserves the symlink, mv would break it)
+apply() {
+    local file="$1"; shift
+    local tmp; tmp=$(mktemp)
+    awk "$@" "$file" > "$tmp" && cat "$tmp" > "$file"
+    rm -f "$tmp"
+}
+
+# Waybar CSS: copy the complete variant file (avoids any CSS parsing issues)
+cat "$DOTFILES/.config/waybar/themes/$variant.css" > "$HOME/.config/waybar/style.css"
+
+# Ghostty: replace the entire palette/color block with the variant's extras file
+apply "$HOME/.config/ghostty/config" \
+    -v extras="$EXTRAS/ghostty/teide_${variant}" '
+    BEGIN {
+        while ((getline line < extras) > 0)
+            extras_lines[++n] = line
+    }
+    /^palette = |^background[ ]*=|^foreground[ ]*=|^cursor-color[ ]*=|^selection-background[ ]*=|^selection-foreground[ ]*=/ {
+        if (!inserted) {
+            for (i = 1; i <= n; i++) print extras_lines[i]
+            inserted = 1
+        }
+        next
+    }
+    { print }
+    '
+
+# Tmux: replace color variable lines by their unique key names
+apply "$HOME/.config/tmux/tmux.conf" \
+    -v bg="$TM_BG" -v fg="$TM_FG" -v text="$TM_TEXT" \
+    -v comment="$TM_COMMENT" -v session="$TM_SESSION" \
+    -v right="$TM_RIGHT" -v red="$TM_RED" '
+    /^color_bg=/      { print "color_bg=\""      bg      "\""; next }
+    /^color_fg=/      { print "color_fg=\""      fg      "\""; next }
+    /^color_text=/    { print "color_text=\""    text    "\""; next }
+    /^color_comment=/ { print "color_comment=\"" comment "\""; next }
+    /^color_session=/ { print "color_session=\"" session "\""; next }
+    /^color_right=/   { print "color_right=\""   right   "\""; next }
+    /^color_red=/     { print "color_red=\""     red     "\""; next }
+    { print }
+    '
+
+# Mako: replace color lines by unique key names
+apply "$HOME/.config/mako/config" \
+    -v bg="$MK_BG" -v fg="$MK_FG" -v border="$MK_BORDER" '
+    /^background-color=/ { print "background-color=" bg;     next }
+    /^text-color=/       { print "text-color="       fg;     next }
+    /^border-color=/     { print "border-color="     border; next }
+    { print }
+    '
+
+# Swaylock: replace color lines by unique key names
+apply "$HOME/.config/swaylock/config" \
+    -v text="$SL_TEXT" -v ring_ver="$SL_RING_VER" \
+    -v ring_wrong="$SL_RING_WRONG" -v ring_idle="$SL_RING_IDLE" \
+    -v ring_clear="$SL_RING_CLEAR" '
+    /^text-color=/       { print "text-color="       text;       next }
+    /^text-clear-color=/ { print "text-clear-color=" text;       next }
+    /^text-ver-color=/   { print "text-ver-color="   text;       next }
+    /^text-wrong-color=/ { print "text-wrong-color=" ring_wrong; next }
+    /^ring-ver-color=/   { print "ring-ver-color="   ring_ver;   next }
+    /^ring-wrong-color=/ { print "ring-wrong-color=" ring_wrong; next }
+    /^ring-color=/       { print "ring-color="       ring_idle;  next }
+    /^ring-clear-color=/ { print "ring-clear-color=" ring_clear; next }
+    { print }
+    '
+
+# System dark/light mode (affects browsers, Electron apps like Claude Code)
+gsettings set org.gnome.desktop.interface color-scheme "$SYS_SCHEME" 2>/dev/null || true
+
+# Reload — config reloads only, nothing is closed
+pkill -SIGUSR2 waybar   2>/dev/null || true
+makoctl reload          2>/dev/null || true
+tmux source-file "$HOME/.config/tmux/tmux.conf" 2>/dev/null || true
+pkill -SIGUSR2 ghostty  2>/dev/null || true
