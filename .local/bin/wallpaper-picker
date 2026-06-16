@@ -2,8 +2,6 @@
 
 WALLPAPER_DIR="$HOME/.config/wallpapers"
 
-source ~/.config/theme/fzf.sh 2>/dev/null
-
 selected=$(
     find "$WALLPAPER_DIR" -maxdepth 1 \( -iname "*.jpg" -o -iname "*.png" \) -printf "%f\n" |
     sort |
@@ -19,9 +17,7 @@ selected=$(
         }
         print result
     }' |
-    fzf --layout=reverse --no-sort --ansi --no-scrollbar --no-separator --no-info \
-        --bind="tab:down,btab:up,ctrl-j:down,ctrl-k:up" \
-        --prompt="Wallpaper: "
+    fuzzel --dmenu
 )
 
 [ -z "$selected" ] && exit 0

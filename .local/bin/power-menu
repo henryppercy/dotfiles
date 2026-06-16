@@ -2,7 +2,7 @@
 
 options="Lock\nSuspend\nHibernate\nReboot\nShutdown\nLogout"
 
-selected=$(echo -e "$options" | fzf --layout=reverse --bind=ctrl-j:down,ctrl-k:up --prompt="Power: ")
+selected=$(echo -e "$options" | fuzzel --dmenu)
 
 case "$selected" in
     Lock) swaymsg exec "swaylock -f" ;;
@@ -10,4 +10,5 @@ case "$selected" in
     Hibernate) swaymsg exec "swaylock -f && systemctl hibernate" ;;
     Reboot) systemctl reboot ;;
     Shutdown) systemctl poweroff ;;
+    Logout) swaymsg exit ;;
 esac

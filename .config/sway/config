@@ -35,14 +35,11 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # Window rules
-for_window [app_id="^sway.launcher$"] floating enable, sticky enable, resize set 40 ppt 70 ppt, border pixel 1, move position center
-for_window [app_id="^sway.clipboard$"] floating enable, resize set 60 ppt 60 ppt, move position center, border pixel 1
-for_window [app_id="^sway.power$"] floating enable, resize set 20 ppt 30 ppt, move position center, border pixel 1
 for_window [app_id="^sway.terminal$"] floating enable, resize set 70 ppt 70 ppt, move position center, border pixel 1
 for_window [app_id="^sway.floating$"] floating enable, resize set 60 ppt 70 ppt, move position center, border pixel 1
 
 # Launcher
-set $menu $term --class=sway.launcher -e env GLYPH_DESKTOP="󰀻 " FZF_DEFAULT_OPTS="--layout=reverse --bind=ctrl-j:down,ctrl-k:up,tab:down,shift-tab:up" PREVIEW_WINDOW="down:2:noborder" sway-launcher-desktop
+set $menu fuzzel
 
 # Key bindings - basics
 bindsym $mod+Return exec $term
@@ -51,10 +48,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+Shift+c reload
 bindsym $mod+Escape exec swaylock -f
-bindsym $mod+p exec $term --class=sway.clipboard -e bash -c 'source ~/.config/theme/fzf.sh 2>/dev/null; cliphist list | fzf --layout=reverse --no-sort --ansi --no-scrollbar --no-separator --no-info --bind tab:down,btab:up | cliphist decode | wl-copy'
-bindsym $mod+Shift+p exec $term --class=sway.power -e bash -c 'source ~/.config/theme/fzf.sh 2>/dev/null; power-menu'
-bindsym $mod+Shift+w exec $term --class=sway.floating -e wallpaper-picker
-bindsym $mod+Shift+t exec $term --class=sway.floating -e theme-switcher
+bindsym $mod+p exec sh -c 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
+bindsym $mod+Shift+p exec power-menu
+bindsym $mod+Shift+w exec wallpaper-picker
+bindsym $mod+Shift+t exec theme-switcher
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
 floating_modifier $mod normal
 

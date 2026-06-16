@@ -4,14 +4,8 @@ DOTFILES="$HOME/code/dotfiles"
 EXTRAS="$DOTFILES/.config/nvim/pack/vendor/opt/teide.nvim/extras"
 THEME_DIR="$HOME/.config/theme"
 
-source "$THEME_DIR/fzf.sh" 2>/dev/null
-
-current=$(cat "$THEME_DIR/current" 2>/dev/null | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 variant=$(printf "Darker\nDark\nDimmed\nLight" | \
-    fzf --layout=reverse --no-sort --no-scrollbar --no-separator --no-info \
-        --bind="tab:down,btab:up,ctrl-j:down,ctrl-k:up" \
-        --prompt="Theme: " \
-        --header="Current: ${current:-Darker}" | \
+    fuzzel --dmenu | \
     tr '[:upper:]' '[:lower:]')
 
 [ -z "$variant" ] && exit 0
@@ -157,6 +151,27 @@ apply "$HOME/.config/swaylock/config" \
     /^ring-wrong-color=/ { print "ring-wrong-color=" ring_wrong; next }
     /^ring-color=/       { print "ring-color="       ring_idle;  next }
     /^ring-clear-color=/ { print "ring-clear-color=" ring_clear; next }
+    { print }
+    '
+
+# Fuzzel: convert "#RRGGBB" colours to fuzzel's "rrggbbaa" format, then replace
+# the [colors] keys in place. Reuses the palette already defined above.
+hexa() { local h="${1#\#}"; printf '%s' "${h,,}ff"; }
+FZ_BG=$(hexa "$FZF_BG"); FZ_FG=$(hexa "$FZF_FG"); FZ_HL=$(hexa "$FZF_HL")
+FZ_SEL=$(hexa "$FZF_BG_SEL"); FZ_DIM=$(hexa "$FZF_FG_DIM"); FZ_BORDER=$(hexa "$MK_BORDER")
+apply "$HOME/.config/fuzzel/fuzzel.ini" \
+    -v bg="$FZ_BG" -v fg="$FZ_FG" -v hl="$FZ_HL" \
+    -v sel="$FZ_SEL" -v dim="$FZ_DIM" -v border="$FZ_BORDER" '
+    /^\[/ { in_colors = ($0 == "[colors]") }
+    in_colors && /^background=/       { print "background="       bg;     next }
+    in_colors && /^text=/             { print "text="            fg;     next }
+    in_colors && /^match=/            { print "match="           hl;     next }
+    in_colors && /^selection=/        { print "selection="       sel;    next }
+    in_colors && /^selection-text=/   { print "selection-text="  fg;     next }
+    in_colors && /^selection-match=/  { print "selection-match=" hl;     next }
+    in_colors && /^border=/           { print "border="          border; next }
+    in_colors && /^prompt=/           { print "prompt="          dim;    next }
+    in_colors && /^input=/            { print "input="           fg;     next }
     { print }
     '
 
