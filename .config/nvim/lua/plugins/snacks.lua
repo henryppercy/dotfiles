@@ -98,6 +98,21 @@ function M.setup()
     map("n", "<leader>fG", function() snacks.picker.grep({ ignored = true, hidden = true }) end, { desc = "Grep All (incl. gitignored)" })
     map("n", "<leader>fe", function() snacks.picker.files({ ignored = true, hidden = true, args = { "--glob", ".env*" } }) end, { desc = "Find Env Files" })
 
+    map("n", "<leader>fd", function()
+        snacks.picker.files({
+            hidden = true,
+            ignored = true,
+            confirm = function(picker, item)
+                picker:close()
+                if item then
+                    vim.schedule(function()
+                        vim.cmd("vertical diffsplit " .. vim.fn.fnameescape(snacks.picker.util.path(item)))
+                    end)
+                end
+            end,
+        })
+    end, { desc = "Diff with file" })
+
     map("n", "<leader>fc", function() snacks.picker.todo_comments() end, { desc = "Comments" })
     map("n", "<leader>ft", function() snacks.picker.todo_comments({ keywords = { "TODO" } }) end, { desc = "TODOs" })
     map("n", "<leader>fn", function() snacks.picker.todo_comments({ keywords = { "NOTE" } }) end, { desc = "Notes" })
