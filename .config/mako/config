@@ -1,8 +1,8 @@
-font=JetBrainsMono Nerd Font 11
+font=IBM Plex Sans 14
 background-color=#171B20EE
 text-color=#E7EAEE
 border-color=#474E5C
-border-size=2
+border-size=1
 border-radius=4
 padding=12
 margin=12

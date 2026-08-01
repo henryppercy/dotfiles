@@ -7,7 +7,7 @@
 
     "modules-left": ["sway/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "bluetooth", "pulseaudio", "battery", "tray"],
+    "modules-right": ["temperature", "network", "bluetooth", "pulseaudio", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -20,6 +20,15 @@
     "clock": {
         "format": "{:%H:%M}",
         "tooltip-format": "{:%A %d %B %Y}"
+    },
+
+    "temperature": {
+        "thermal-zone": 6,
+        "critical-threshold": 85,
+        "format": "{icon} {temperatureC}°",
+        "format-critical": "{icon} {temperatureC}°",
+        "format-icons": ["", "", ""],
+        "tooltip": false
     },
 
     "battery": {
