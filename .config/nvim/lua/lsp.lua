@@ -46,8 +46,10 @@ function M.setup()
         "astro", "eslint",
         "emmet_language_server",
         "tailwindcss",
+        "html",
 
         "gopls",
+        "templ",
 
         "intelephense",
 
