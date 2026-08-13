@@ -5,10 +5,13 @@ function M.setup()
         formatters_by_ft = {
             astro = { "prettier", "eslint_d" },
             go = { "goimports", "gofmt" },
+            html = { "prettier" },
+            css = { "prettier" },
             javascript = { "prettier", "eslint_d" },
             javascriptreact = { "prettier", "eslint_d" },
             lua = { "stylua" },
             php = { "pint" },
+            templ = { "templ" },
             typescript = { "prettier", "eslint_d" },
             typescriptreact = { "prettier", "eslint_d" },
             vue = { "prettier", "eslint_d" },

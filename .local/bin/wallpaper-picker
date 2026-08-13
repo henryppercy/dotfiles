@@ -3,7 +3,7 @@
 WALLPAPER_DIR="$HOME/.config/wallpapers"
 
 selected=$(
-    find "$WALLPAPER_DIR" -maxdepth 1 \( -iname "*.jpg" -o -iname "*.png" \) -printf "%f\n" |
+    find -L "$WALLPAPER_DIR" -maxdepth 1 \( -iname "*.jpg" -o -iname "*.png" \) -printf "%f\n" |
     sort |
     awk '{
         name=$0
@@ -23,7 +23,7 @@ selected=$(
 [ -z "$selected" ] && exit 0
 
 stem=$(echo "$selected" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-filepath=$(find "$WALLPAPER_DIR" -maxdepth 1 \( -iname "$stem.jpg" -o -iname "$stem.png" \) | head -1)
+filepath=$(find -L "$WALLPAPER_DIR" -maxdepth 1 \( -iname "$stem.jpg" -o -iname "$stem.png" \) | head -1)
 
 [ -z "$filepath" ] && exit 1
 

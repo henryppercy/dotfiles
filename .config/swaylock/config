@@ -1,6 +1,6 @@
 image=~/.config/wallpapers/current
 scaling=fill
-font=JetBrainsMono Nerd Font
+font=IBM Plex Sans
 font-size=14
 
 indicator-radius=80
