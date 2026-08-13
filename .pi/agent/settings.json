@@ -1,0 +1,9 @@
+{
+  "defaultProvider": "opencode-go",
+  "defaultModel": "kimi-k3",
+  "defaultProjectTrust": "ask",
+  "compaction": {
+    "enabled": true
+  },
+  "lastChangelogVersion": "0.84.1"
+}

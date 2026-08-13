@@ -15,6 +15,9 @@ alias art="php artisan"
 alias pest="./vendor/bin/pest"
 alias pint="./vendor/bin/pint"
 alias s='sesh connect "$(sesh list --icons | fzf --no-preview)"'
+alias piro='pi --tools read,grep,find,ls'
+
+export PI_OFFLINE=1
 
 # PATH
 export PATH="$PATH:$HOME/bin"

@@ -5,3 +5,10 @@
 .config/meteor/config.json
 .config/nvim/spell
 .zshrc.local
+
+# pi runtime state 
+.pi/agent/sessions
+.pi/agent/trust.json
+.pi/agent/auth.json
+.pi/agent/models-store.json
+.pi/agent/npm
