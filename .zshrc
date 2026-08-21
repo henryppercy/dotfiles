@@ -11,7 +11,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias m="meteor"
-alias art="php artisan"
+alias art="valet php artisan"
 alias pest="./vendor/bin/pest"
 alias pint="./vendor/bin/pint"
 alias s='sesh connect "$(sesh list --icons | fzf --no-preview)"'
@@ -54,4 +54,3 @@ bindkey '^x^e' edit-command-line
 
 # Zoxide
 eval "$(zoxide init zsh)"
-
