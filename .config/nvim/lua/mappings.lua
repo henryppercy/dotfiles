@@ -27,6 +27,17 @@ function M.setup()
         { desc = "Format" })
     keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
     keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic float" })
+    keymap.set("n", "<leader>cy", function()
+        local diagnostics = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+        if vim.tbl_isempty(diagnostics) then
+            vim.notify("No diagnostics on this line", vim.log.levels.WARN)
+            return
+        end
+        local messages = vim.tbl_map(function(d) return d.message end, diagnostics)
+        local text = table.concat(messages, "\n")
+        vim.fn.setreg("+", text)
+        vim.notify(text, vim.log.levels.INFO, { title = "Copied diagnostic" })
+    end, { desc = "Yank diagnostic" })
     keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
     -- buffer
