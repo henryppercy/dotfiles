@@ -10,6 +10,14 @@ function M.setup()
         },
     }
 
+    local dropdown_no_preview = {
+        layout = {
+            preset = "dropdown",
+            layout = { backdrop = true, height = 0.6, row = 0.2 },
+            preview = false,
+        },
+    }
+
     require("snacks").setup({
         dashboard = { enabled = false },
         indent = {
@@ -42,13 +50,10 @@ function M.setup()
                 git_status = git_picker_layout,
                 git_stash = git_picker_layout,
                 git_diff = git_picker_layout,
-                buffers = {
-                    layout = {
-                        preset = "dropdown",
-                        layout = { backdrop = true, height = 0.6, row = 0.2 },
-                        preview = false,
-                    },
-                },
+                buffers = dropdown_no_preview,
+                files = dropdown_no_preview,
+                recent = dropdown_no_preview,
+                smart = dropdown_no_preview,
             },
             icons = {
                 files = { enabled = false },
@@ -94,7 +99,7 @@ function M.setup()
     map("n", "<leader>fh", function() snacks.picker.help() end, { desc = "Help" })
     map("n", "<leader>fr", function() snacks.picker.recent() end, { desc = "Recents" })
 
-    map("n", "<leader>fa", function() snacks.picker.files({ hidden = true, ignored = true }) end, { desc = "Find All Files (incl. gitignored)" })
+    map("n", "<leader>fF", function() snacks.picker.files({ hidden = true, ignored = true }) end, { desc = "Find All Files (incl. gitignored)" })
     map("n", "<leader>fG", function() snacks.picker.grep({ ignored = true, hidden = true }) end, { desc = "Grep All (incl. gitignored)" })
     map("n", "<leader>fe", function() snacks.picker.files({ ignored = true, hidden = true, args = { "--glob", ".env*" } }) end, { desc = "Find Env Files" })
 
