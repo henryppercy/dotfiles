@@ -16,6 +16,7 @@ alias pest="./vendor/bin/pest"
 alias pint="./vendor/bin/pint"
 alias s='sesh connect "$(sesh list --icons | fzf --no-preview)"'
 alias piro='pi --tools read,grep,find,ls'
+alias hd='hunk diff'
 
 export PI_OFFLINE=1
 

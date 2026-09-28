@@ -28,6 +28,7 @@ PLUGINS=(
     "falsycat/ledger.nvim ledger.nvim"
     "wllfaria/ledger.nvim wllfaria-ledger.nvim"
     "Saghen/blink.compat blink.compat"
+    "folke/lazydev.nvim lazydev.nvim"
 )
 
 clone_plugin() {

@@ -17,6 +17,7 @@ function M.setup()
     vim.cmd.packadd("oil.nvim")
     vim.cmd.packadd("render-markdown.nvim")
     vim.cmd.packadd("no-neck-pain.nvim")
+    vim.cmd.packadd("lazydev.nvim")
 
     -- Configure in load order
     require("plugins.teide").setup()
@@ -29,6 +30,7 @@ function M.setup()
     require("plugins.oil").setup()
     require("plugins.render-markdown").setup()
     require("plugins.no-neck-pain").setup()
+    require("plugins.lazydev").setup()
 
     --------------------------------------------------------------------------
     -- Deferred plugins (load after first buffer)
