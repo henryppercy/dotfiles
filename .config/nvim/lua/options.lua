@@ -35,8 +35,10 @@ function M.setup()
     -- opt.wrap = false
     opt.linebreak = true
     opt.foldmethod = "expr"
-    opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    opt.foldlevel = 99 -- start with all folds open
+    opt.foldexpr =
+    "v:lua.vim.treesitter.foldexpr()"                -- lsp.lua upgrades this per-buffer when the LSP server supports folding ranges
+    opt.foldtext = "v:lua.vim.lsp.foldtext()"
+    opt.foldlevel = 99                               -- start with all folds open
     opt.foldlevelstart = 99
     opt.relativenumber = true
 
@@ -52,8 +54,8 @@ function M.setup()
     })
 
     -- make TreeSitter highlight groups have higher priority than LSP semantic tokens
-    vim.highlight.priorities.treesitter = 100
-    vim.highlight.priorities.semantic_tokens = 95
+    vim.hl.priorities.treesitter = 100
+    vim.hl.priorities.semantic_tokens = 95
 end
 
 return M
