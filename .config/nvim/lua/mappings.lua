@@ -49,7 +49,28 @@ function M.setup()
         vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
     end, { desc = "Copy relative path" })
     keymap.set("n", "<leader>bY", ":%y+<CR>", { desc = "Yank buffer to clipboard" })
-    keymap.set("n", "<leader>bc", "<cmd>NoNeckPain<CR>", { desc = "Center buffer" })
+
+    local function center_buffer(width)
+        return function()
+            local nnp = require("no-neck-pain")
+            local enabled = _G.NoNeckPain and _G.NoNeckPain.state and _G.NoNeckPain.state.enabled
+
+            if not enabled then
+                if _G.NoNeckPain.config == nil then
+                    _G.NoNeckPain.config = require("no-neck-pain.config").options
+                end
+                _G.NoNeckPain.config.width = width
+                nnp.enable()
+            elseif _G.NoNeckPain.config.width == width then
+                nnp.toggle()
+            else
+                nnp.resize(width)
+            end
+        end
+    end
+
+    keymap.set("n", "<leader>bcw", center_buffer(80), { desc = "Center buffer (writing width)" })
+    keymap.set("n", "<leader>bcc", center_buffer(160), { desc = "Center buffer (code width)" })
 
     -- split navigation
     keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })

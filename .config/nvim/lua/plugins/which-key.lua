@@ -5,6 +5,7 @@ function M.setup()
 
     require("mappings").register({
         { "<leader>b",  group = "Buffer" },
+        { "<leader>bc", group = "Center" },
         { "<leader>c",  group = "Code" },
         { "<leader>f",  group = "Find" },
         { "<leader>g",  group = "Git" },
