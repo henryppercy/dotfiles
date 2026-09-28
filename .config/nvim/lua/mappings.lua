@@ -82,6 +82,19 @@ function M.setup()
         "o- [ ] ",
         { desc = "Insert checkbox" }
     )
+
+    -- checkbox state (operates on the current line regardless of cursor column)
+    local function set_checkbox(state)
+        return function()
+            local line = vim.fn.getline(".")
+            vim.fn.setline(".", (line:gsub("%[.%]", "[" .. state .. "]", 1)))
+        end
+    end
+
+    keymap.set("n", "<leader>xx", set_checkbox("x"), { desc = "Checkbox done" })
+    keymap.set("n", "<leader>x-", set_checkbox("-"), { desc = "Checkbox in progress" })
+    keymap.set("n", "<leader>x/", set_checkbox("/"), { desc = "Checkbox pending" })
+    keymap.set("n", "<leader>x<Space>", set_checkbox(" "), { desc = "Checkbox clear" })
 end
 
 return M

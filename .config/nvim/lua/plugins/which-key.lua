@@ -12,6 +12,7 @@ function M.setup()
         { "<leader>i",  group = "Insert" },
         { "<leader>n",  group = "Notes" },
         { "<leader>nt", group = "Time" },
+        { "<leader>x",  group = "Checkbox" },
         { "<leader>z",  group = "Zen" },
     })
 
