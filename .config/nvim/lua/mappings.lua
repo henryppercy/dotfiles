@@ -22,6 +22,13 @@ function M.setup()
     keymap.set("v", "<", "<gv", { desc = "Indent left" })
     keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
+    -- line navigation (replaces default H/L screen-top/bottom jumps)
+    keymap.set({ "n", "x", "o" }, "H", "^", { desc = "First non-blank character" })
+    keymap.set({ "n", "x", "o" }, "L", "g_", { desc = "Last non-blank character" })
+
+    -- text
+    keymap.set("n", "<leader>u", "gUl", { desc = "Capitalise letter under cursor" })
+
     -- code
     keymap.set("n", "<leader>cf", function() require("conform").format({ lsp_format = "fallback" }) end,
         { desc = "Format" })
