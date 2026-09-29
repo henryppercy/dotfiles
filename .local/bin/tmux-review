@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Jump to the review window, or create one. Exiting hunk closes the window.
+tmux select-window -t review 2>/dev/null && exit 0
+
+dir=$(tmux display -p '#{pane_current_path}')
+exec tmux new-window -n review -c "$dir" "hunk diff --watch"
