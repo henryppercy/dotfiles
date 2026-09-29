@@ -5,16 +5,20 @@ local NOTES_WORK = vim.fn.expand("~/notes/work")
 local NOTE_BIN = "note"
 
 function M.exec(args)
-    local cmd = NOTE_BIN .. " " .. table.concat(args, " ")
-    local output = vim.fn.system(cmd)
+    local cmd = { NOTE_BIN }
+    vim.list_extend(cmd, args)
 
-    if vim.v.shell_error ~= 0 then
-        vim.notify(output, vim.log.levels.ERROR)
+    local result = vim.system(cmd, { text = true }):wait()
+
+    if result.code ~= 0 then
+        local err = result.stderr
+        if err == nil or err == "" then err = result.stdout end
+        vim.notify(err, vim.log.levels.ERROR)
         return nil
     end
 
-    local path = vim.trim(output)
-    vim.cmd.edit(path)
+    local path = vim.trim(result.stdout)
+    vim.cmd.edit(vim.fn.fnameescape(path))
     return path
 end
 
