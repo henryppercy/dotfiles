@@ -1,0 +1,28 @@
+[user]
+    name = henryppercy
+    email = henryppercy@gmail.com
+
+[gpg]
+    program = gpg
+
+[core]
+    editor = nvim
+
+[pager]
+    diff = hunk pager
+    show = hunk pager
+
+[diff]
+    tool = hunk
+
+[difftool "hunk"]
+    cmd = hunk difftool "$LOCAL" "$REMOTE" "$BASE"
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[includeIf "gitdir:~/code/rework/"]
+    path = ~/.gitconfig-rework
