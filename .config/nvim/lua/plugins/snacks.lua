@@ -76,8 +76,6 @@ function M.setup()
                 },
             },
         },
-        lazygit = {},
-
         bigfile = { enabled = false },
         explorer = { enabled = false },
         input = { enabled = false },
@@ -129,7 +127,6 @@ function M.setup()
     map("n", "gr", function() snacks.picker.lsp_references() end, { desc = "Go to references" })
     map("n", "gy", function() snacks.picker.lsp_type_definitions() end, { desc = "Go to type definition" })
 
-    map("n", "<leader>gg", function() snacks.lazygit() end, { desc = "Lazygit" })
     map("n", "<leader>gb", function() snacks.picker.git_branches() end, { desc = "Git Branches" })
     map("n", "<leader>gl", function() snacks.picker.git_log() end, { desc = "Git Log" })
     map("n", "<leader>gf", function() snacks.picker.git_log_file() end, { desc = "Git Log File" })
