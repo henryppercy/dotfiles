@@ -20,7 +20,7 @@ function M.setup()
         completion = { documentation = { auto_show = true } },
         signature = { enabled = true },
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             per_filetype = {
                 markdown = {},
                 ledger   = { "ledger_accounts", "buffer" },
@@ -29,6 +29,11 @@ function M.setup()
                 ledger_accounts = {
                     name   = "ledger",
                     module = "blink.compat.source",
+                },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 100,
                 },
             },
         },
