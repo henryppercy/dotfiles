@@ -1,0 +1,7 @@
+# Defaults: https://github.com/altsem/gitu/blob/master/src/default_config.toml
+
+[bindings]
+# Aerospace owns alt-h/j/k/l for window focus
+root.move_prev_section = ["[", "alt+up"]
+root.move_next_section = ["]", "alt+down"]
+root.move_parent_section = ["-", "alt+left"]
