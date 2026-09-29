@@ -101,36 +101,26 @@ function M.setup()
     })
 
     -- find / search
-    -- register({
-    --     "<leader>nf",
-    --     function() require("snacks.picker").files({ dirs = { NOTES_PERSONAL, NOTES_WORK } }) end,
-    --     desc = "Find all notes",
-    -- })
-    -- register({
-    --     "<leader>ns",
-    --     function() require("snacks.picker").grep({ dirs = { NOTES_PERSONAL, NOTES_WORK } }) end,
-    --     desc = "Grep all notes",
-    -- })
-    -- register({
-    --     "<leader>n1",
-    --     function() require("snacks.picker").files({ dirs = { NOTES_PERSONAL .. "/daily" } }) end,
-    --     desc = "Find personal daily",
-    -- })
-    -- register({
-    --     "<leader>n2",
-    --     function() require("snacks.picker").files({ dirs = { NOTES_WORK .. "/daily" } }) end,
-    --     desc = "Find work daily",
-    -- })
-    -- register({
-    --     "<leader>n3",
-    --     function() require("snacks.picker").files({ dirs = { NOTES_WORK .. "/tasks" } }) end,
-    --     desc = "Find work tasks",
-    -- })
-    -- register({
-    --     "<leader>n4",
-    --     function() require("snacks.picker").files({ dirs = { NOTES_WORK .. "/meetings" } }) end,
-    --     desc = "Find work meetings",
-    -- })
+    register({
+        "<leader>nff",
+        function() require("snacks.picker").files({ dirs = { NOTES_PERSONAL, NOTES_WORK } }) end,
+        desc = "Find all notes",
+    })
+    register({
+        "<leader>ns",
+        function() require("snacks.picker").grep({ dirs = { NOTES_PERSONAL, NOTES_WORK } }) end,
+        desc = "Grep all notes",
+    })
+    register({
+        "<leader>nft",
+        function() require("snacks.picker").files({ dirs = { NOTES_WORK .. "/tasks" } }) end,
+        desc = "Find work tasks",
+    })
+    register({
+        "<leader>nfm",
+        function() require("snacks.picker").files({ dirs = { NOTES_WORK .. "/meetings" } }) end,
+        desc = "Find work meetings",
+    })
 end
 
 return M
